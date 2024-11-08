@@ -1,0 +1,222 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: update_column_frequency_responses_amplitude
+  description: Update the 'amplitude' column in the 'frequency_responses' collection
+  fields:
+    - name: _set
+      type: float4!
+      description: Set the column to this value
+  graphql:
+    typeName: update_column_frequency_responses_amplitude
+    inputTypeName: update_column_frequency_responses_amplitude_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_connector
+      dataConnectorObjectType: update_column_frequency_responses_amplitude
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: update_column_frequency_responses_amplitude
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - _set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: update_column_frequency_responses_frequency_hz
+  description: Update the 'frequency_hz' column in the 'frequency_responses' collection
+  fields:
+    - name: _set
+      type: float4!
+      description: Set the column to this value
+  graphql:
+    typeName: update_column_frequency_responses_frequency_hz
+    inputTypeName: update_column_frequency_responses_frequency_hz_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_connector
+      dataConnectorObjectType: update_column_frequency_responses_frequency_hz
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: update_column_frequency_responses_frequency_hz
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - _set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: update_column_frequency_responses_iem_id
+  description: Update the 'iem_id' column in the 'frequency_responses' collection
+  fields:
+    - name: _set
+      type: int4
+      description: Set the column to this value
+  graphql:
+    typeName: update_column_frequency_responses_iem_id
+    inputTypeName: update_column_frequency_responses_iem_id_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_connector
+      dataConnectorObjectType: update_column_frequency_responses_iem_id
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: update_column_frequency_responses_iem_id
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - _set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: update_column_frequency_responses_response_id
+  description: Update the 'response_id' column in the 'frequency_responses' collection
+  fields:
+    - name: _set
+      type: int4!
+      description: Set the column to this value
+  graphql:
+    typeName: update_column_frequency_responses_response_id
+    inputTypeName: update_column_frequency_responses_response_id_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_connector
+      dataConnectorObjectType: update_column_frequency_responses_response_id
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: update_column_frequency_responses_response_id
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - _set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: update_frequency_responses_by_response_id_update_columns
+  description: Update the columns of the 'frequency_responses' collection
+  fields:
+    - name: amplitude
+      type: update_column_frequency_responses_amplitude
+      description: Update the 'amplitude' column in the 'frequency_responses' collection.
+    - name: frequency_hz
+      type: update_column_frequency_responses_frequency_hz
+      description: Update the 'frequency_hz' column in the 'frequency_responses' collection.
+    - name: iem_id
+      type: update_column_frequency_responses_iem_id
+      description: Update the 'iem_id' column in the 'frequency_responses' collection.
+    - name: response_id
+      type: update_column_frequency_responses_response_id
+      description: Update the 'response_id' column in the 'frequency_responses' collection.
+  graphql:
+    typeName: update_frequency_responses_by_response_id_update_columns
+    inputTypeName: update_frequency_responses_by_response_id_update_columns_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_connector
+      dataConnectorObjectType: update_frequency_responses_by_response_id_update_columns
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: update_frequency_responses_by_response_id_update_columns
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amplitude
+          - frequency_hz
+          - iem_id
+          - response_id
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: update_frequency_responses_by_response_id_response
+  description: Responses from the 'update_frequency_responses_by_response_id' procedure
+  fields:
+    - name: affected_rows
+      type: int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[frequency_responses!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: update_frequency_responses_by_response_id_response
+    inputTypeName: update_frequency_responses_by_response_id_response_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_connector
+      dataConnectorObjectType: update_frequency_responses_by_response_id_response
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: update_frequency_responses_by_response_id_response
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affected_rows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: update_frequency_responses_by_response_id
+  outputType: update_frequency_responses_by_response_id_response!
+  arguments:
+    - name: key_response_id
+      type: int4!
+    - name: post_check
+      type: frequency_responses_bool_exp
+      description: Update permission post-condition predicate over the
+        'frequency_responses' collection
+    - name: pre_check
+      type: frequency_responses_bool_exp
+      description: Update permission pre-condition predicate over the
+        'frequency_responses' collection
+    - name: update_columns
+      type: update_frequency_responses_by_response_id_update_columns!
+  source:
+    dataConnectorName: pg_connector
+    dataConnectorCommand:
+      procedure: update_frequency_responses_by_response_id
+  graphql:
+    rootFieldName: update_frequency_responses_by_response_id
+    rootFieldKind: Mutation
+  description: Update any row on the 'frequency_responses' collection using the
+    'response_id' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: update_frequency_responses_by_response_id
+  permissions:
+    - role: admin
+      allowExecution: true
+

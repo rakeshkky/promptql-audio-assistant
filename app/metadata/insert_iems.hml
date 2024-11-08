@@ -1,0 +1,91 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: insert_iems_object
+  fields:
+    - name: iem_id
+      type: int4
+    - name: iem_name
+      type: varchar!
+  graphql:
+    typeName: insert_iems_object
+    inputTypeName: insert_iems_object_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_connector
+      dataConnectorObjectType: insert_iems_object
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: insert_iems_object
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - iem_id
+          - iem_name
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: insert_iems_response
+  description: Responses from the 'insert_iems' procedure
+  fields:
+    - name: affected_rows
+      type: int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[iems!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: insert_iems_response
+    inputTypeName: insert_iems_response_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_connector
+      dataConnectorObjectType: insert_iems_response
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: insert_iems_response
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affected_rows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: insert_iems
+  outputType: insert_iems_response!
+  arguments:
+    - name: objects
+      type: "[insert_iems_object!]!"
+    - name: post_check
+      type: iems_bool_exp
+      description: Insert permission predicate over the 'iems' collection
+  source:
+    dataConnectorName: pg_connector
+    dataConnectorCommand:
+      procedure: insert_iems
+  graphql:
+    rootFieldName: insert_iems
+    rootFieldKind: Mutation
+  description: Insert into the iems table
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: insert_iems
+  permissions:
+    - role: admin
+      allowExecution: true
+

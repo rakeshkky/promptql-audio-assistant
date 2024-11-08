@@ -1,0 +1,134 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: iems
+  fields:
+    - name: iem_id
+      type: int4!
+    - name: iem_name
+      type: varchar!
+  graphql:
+    typeName: iems
+    inputTypeName: iems_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_connector
+      dataConnectorObjectType: iems
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: iems
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - iem_id
+          - iem_name
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: iems_bool_exp
+  operand:
+    object:
+      type: iems
+      comparableFields:
+        - fieldName: iem_id
+          booleanExpressionType: int4_bool_exp
+        - fieldName: iem_name
+          booleanExpressionType: varchar_bool_exp
+      comparableRelationships:
+        - relationshipName: frequency_responses
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: iems_bool_exp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: iems_agg_exp
+  operand:
+    object:
+      aggregatedType: iems
+      aggregatableFields:
+        - fieldName: iem_id
+          aggregateExpression: int4_agg_exp
+        - fieldName: iem_name
+          aggregateExpression: varchar_agg_exp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: iems_agg_exp
+
+---
+kind: Model
+version: v1
+definition:
+  name: iems
+  objectType: iems
+  source:
+    dataConnectorName: pg_connector
+    collection: iems
+  filterExpressionType: iems_bool_exp
+  aggregateExpression: iems_agg_exp
+  orderableFields:
+    - fieldName: iem_id
+      orderByDirections:
+        enableAll: true
+    - fieldName: iem_name
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: iems
+    selectUniques:
+      - queryRootField: iems_by_iem_name
+        uniqueIdentifier:
+          - iem_name
+      - queryRootField: iems_by_iem_id
+        uniqueIdentifier:
+          - iem_id
+    orderByExpressionType: iems_order_by
+    filterInputTypeName: iems_filter_input
+    aggregate:
+      queryRootField: iems_aggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: iems
+  permissions:
+    - role: admin
+      select:
+        filter: null
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: frequency_responses
+  sourceType: iems
+  target:
+    model:
+      name: frequency_responses
+      relationshipType: Array
+      aggregate:
+        aggregateExpression: frequency_responses_agg_exp
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: iem_id
+      target:
+        modelField:
+          - fieldName: iem_id
+  graphql:
+    aggregateFieldName: frequency_responses_aggregate
+

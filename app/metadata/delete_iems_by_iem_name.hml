@@ -1,0 +1,62 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: delete_iems_by_iem_name_response
+  description: Responses from the 'delete_iems_by_iem_name' procedure
+  fields:
+    - name: affected_rows
+      type: int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[iems!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: delete_iems_by_iem_name_response
+    inputTypeName: delete_iems_by_iem_name_response_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_connector
+      dataConnectorObjectType: delete_iems_by_iem_name_response
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: delete_iems_by_iem_name_response
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affected_rows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: delete_iems_by_iem_name
+  outputType: delete_iems_by_iem_name_response!
+  arguments:
+    - name: key_iem_name
+      type: varchar!
+    - name: pre_check
+      type: iems_bool_exp
+      description: Delete permission predicate over the 'iems' collection
+  source:
+    dataConnectorName: pg_connector
+    dataConnectorCommand:
+      procedure: delete_iems_by_iem_name
+  graphql:
+    rootFieldName: delete_iems_by_iem_name
+    rootFieldKind: Mutation
+  description: Delete any row on the 'iems' collection using the 'iem_name' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: delete_iems_by_iem_name
+  permissions:
+    - role: admin
+      allowExecution: true
+

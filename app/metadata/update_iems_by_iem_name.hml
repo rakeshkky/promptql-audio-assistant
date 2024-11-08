@@ -1,0 +1,99 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: update_iems_by_iem_name_update_columns
+  description: Update the columns of the 'iems' collection
+  fields:
+    - name: iem_id
+      type: update_column_iems_iem_id
+      description: Update the 'iem_id' column in the 'iems' collection.
+    - name: iem_name
+      type: update_column_iems_iem_name
+      description: Update the 'iem_name' column in the 'iems' collection.
+  graphql:
+    typeName: update_iems_by_iem_name_update_columns
+    inputTypeName: update_iems_by_iem_name_update_columns_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_connector
+      dataConnectorObjectType: update_iems_by_iem_name_update_columns
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: update_iems_by_iem_name_update_columns
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - iem_id
+          - iem_name
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: update_iems_by_iem_name_response
+  description: Responses from the 'update_iems_by_iem_name' procedure
+  fields:
+    - name: affected_rows
+      type: int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[iems!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: update_iems_by_iem_name_response
+    inputTypeName: update_iems_by_iem_name_response_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_connector
+      dataConnectorObjectType: update_iems_by_iem_name_response
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: update_iems_by_iem_name_response
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affected_rows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: update_iems_by_iem_name
+  outputType: update_iems_by_iem_name_response!
+  arguments:
+    - name: key_iem_name
+      type: varchar!
+    - name: post_check
+      type: iems_bool_exp
+      description: Update permission post-condition predicate over the 'iems' collection
+    - name: pre_check
+      type: iems_bool_exp
+      description: Update permission pre-condition predicate over the 'iems' collection
+    - name: update_columns
+      type: update_iems_by_iem_name_update_columns!
+  source:
+    dataConnectorName: pg_connector
+    dataConnectorCommand:
+      procedure: update_iems_by_iem_name
+  graphql:
+    rootFieldName: update_iems_by_iem_name
+    rootFieldKind: Mutation
+  description: Update any row on the 'iems' collection using the 'iem_name' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: update_iems_by_iem_name
+  permissions:
+    - role: admin
+      allowExecution: true
+

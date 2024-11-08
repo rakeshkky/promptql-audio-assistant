@@ -1,0 +1,147 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: frequency_responses
+  fields:
+    - name: amplitude
+      type: float4!
+    - name: frequency_hz
+      type: float4!
+    - name: iem_id
+      type: int4
+    - name: response_id
+      type: int4!
+  graphql:
+    typeName: frequency_responses
+    inputTypeName: frequency_responses_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_connector
+      dataConnectorObjectType: frequency_responses
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: frequency_responses
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amplitude
+          - frequency_hz
+          - iem_id
+          - response_id
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: frequency_responses_bool_exp
+  operand:
+    object:
+      type: frequency_responses
+      comparableFields:
+        - fieldName: amplitude
+          booleanExpressionType: float4_bool_exp
+        - fieldName: frequency_hz
+          booleanExpressionType: float4_bool_exp
+        - fieldName: iem_id
+          booleanExpressionType: int4_bool_exp
+        - fieldName: response_id
+          booleanExpressionType: int4_bool_exp
+      comparableRelationships:
+        - relationshipName: iem
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: frequency_responses_bool_exp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: frequency_responses_agg_exp
+  operand:
+    object:
+      aggregatedType: frequency_responses
+      aggregatableFields:
+        - fieldName: amplitude
+          aggregateExpression: float4_agg_exp
+        - fieldName: frequency_hz
+          aggregateExpression: float4_agg_exp
+        - fieldName: iem_id
+          aggregateExpression: int4_agg_exp
+        - fieldName: response_id
+          aggregateExpression: int4_agg_exp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: frequency_responses_agg_exp
+
+---
+kind: Model
+version: v1
+definition:
+  name: frequency_responses
+  objectType: frequency_responses
+  source:
+    dataConnectorName: pg_connector
+    collection: frequency_responses
+  filterExpressionType: frequency_responses_bool_exp
+  aggregateExpression: frequency_responses_agg_exp
+  orderableFields:
+    - fieldName: amplitude
+      orderByDirections:
+        enableAll: true
+    - fieldName: frequency_hz
+      orderByDirections:
+        enableAll: true
+    - fieldName: iem_id
+      orderByDirections:
+        enableAll: true
+    - fieldName: response_id
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: frequency_responses
+    selectUniques:
+      - queryRootField: frequency_responses_by_response_id
+        uniqueIdentifier:
+          - response_id
+    orderByExpressionType: frequency_responses_order_by
+    filterInputTypeName: frequency_responses_filter_input
+    aggregate:
+      queryRootField: frequency_responses_aggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: frequency_responses
+  permissions:
+    - role: admin
+      select:
+        filter: null
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: iem
+  sourceType: frequency_responses
+  target:
+    model:
+      name: iems
+      relationshipType: Object
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: iem_id
+      target:
+        modelField:
+          - fieldName: iem_id
+

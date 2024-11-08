@@ -1,0 +1,97 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: insert_frequency_responses_object
+  fields:
+    - name: amplitude
+      type: float4!
+    - name: frequency_hz
+      type: float4!
+    - name: iem_id
+      type: int4
+    - name: response_id
+      type: int4
+  graphql:
+    typeName: insert_frequency_responses_object
+    inputTypeName: insert_frequency_responses_object_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_connector
+      dataConnectorObjectType: insert_frequency_responses_object
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: insert_frequency_responses_object
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amplitude
+          - frequency_hz
+          - iem_id
+          - response_id
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: insert_frequency_responses_response
+  description: Responses from the 'insert_frequency_responses' procedure
+  fields:
+    - name: affected_rows
+      type: int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[frequency_responses!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: insert_frequency_responses_response
+    inputTypeName: insert_frequency_responses_response_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_connector
+      dataConnectorObjectType: insert_frequency_responses_response
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: insert_frequency_responses_response
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affected_rows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: insert_frequency_responses
+  outputType: insert_frequency_responses_response!
+  arguments:
+    - name: objects
+      type: "[insert_frequency_responses_object!]!"
+    - name: post_check
+      type: frequency_responses_bool_exp
+      description: Insert permission predicate over the 'frequency_responses' collection
+  source:
+    dataConnectorName: pg_connector
+    dataConnectorCommand:
+      procedure: insert_frequency_responses
+  graphql:
+    rootFieldName: insert_frequency_responses
+    rootFieldKind: Mutation
+  description: Insert into the frequency_responses table
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: insert_frequency_responses
+  permissions:
+    - role: admin
+      allowExecution: true
+

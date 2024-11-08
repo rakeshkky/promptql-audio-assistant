@@ -1,0 +1,63 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: delete_frequency_responses_by_response_id_response
+  description: Responses from the 'delete_frequency_responses_by_response_id' procedure
+  fields:
+    - name: affected_rows
+      type: int4!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[frequency_responses!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: delete_frequency_responses_by_response_id_response
+    inputTypeName: delete_frequency_responses_by_response_id_response_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_connector
+      dataConnectorObjectType: delete_frequency_responses_by_response_id_response
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: delete_frequency_responses_by_response_id_response
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affected_rows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: delete_frequency_responses_by_response_id
+  outputType: delete_frequency_responses_by_response_id_response!
+  arguments:
+    - name: key_response_id
+      type: int4!
+    - name: pre_check
+      type: frequency_responses_bool_exp
+      description: Delete permission predicate over the 'frequency_responses' collection
+  source:
+    dataConnectorName: pg_connector
+    dataConnectorCommand:
+      procedure: delete_frequency_responses_by_response_id
+  graphql:
+    rootFieldName: delete_frequency_responses_by_response_id
+    rootFieldKind: Mutation
+  description: Delete any row on the 'frequency_responses' collection using the
+    'response_id' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: delete_frequency_responses_by_response_id
+  permissions:
+    - role: admin
+      allowExecution: true
+

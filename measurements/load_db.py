@@ -8,7 +8,11 @@ DATA_DIR = 'iem_measurements'
 
 def load_data_to_db():
     # Connect to the PostgreSQL database using the URL
-    conn = psycopg2.connect(os.getenv('PG_URL')
+    pg_url = os.getenv('PG_URL')
+    if not pg_url:
+        print("Please set the PG_URL environment variable with the PostgreSQL connection string.")
+        return
+    conn = psycopg2.connect(pg_url)
     cursor = conn.cursor()
 
     try:

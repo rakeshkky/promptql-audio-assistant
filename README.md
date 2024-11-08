@@ -47,7 +47,7 @@ PG_URL= <your-postrgres-url-string> python load_db.py
 - [Create a Hasura account](https://promptql.hasura.io/docs/getting-started#create-a-hasura-account) if you don't have on already.
 - [Install](https://promptql.hasura.io/docs/getting-started#install-the-ddn-cli) Hasura DDN CLI.
 - [Login with CLI](https://promptql.hasura.io/docs/getting-started#log-in-with-the-cli)
-- Set up `.env` file by `cp .env.example .env`
+- Set up `.env` file by `cp .env_example .env`
 - Add Anthropic API key to `.env`. Get an api key from https://console.anthropic.com/settings/keys
 
 ```

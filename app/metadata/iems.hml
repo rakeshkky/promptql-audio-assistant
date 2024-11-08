@@ -72,6 +72,7 @@ kind: Model
 version: v1
 definition:
   name: iems
+  description: In Ear Monitors data, may include preference targets labeled with a "_target" suffix.
   objectType: iems
   source:
     dataConnectorName: pg_connector
@@ -131,4 +132,3 @@ definition:
           - fieldName: iem_id
   graphql:
     aggregateFieldName: frequency_responses_aggregate
-

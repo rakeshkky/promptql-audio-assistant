@@ -86,6 +86,7 @@ kind: Model
 version: v1
 definition:
   name: frequency_responses
+  description: This model contains frequency response data for in-ear monitors (IEMs) across the full audible range (20 Hz to 20 kHz). While analyzing the frequency response, consider both the overall profile and specific narrow frequency ranges—such as sub-bass, mid-bass, lower mids, mids, upper mids, pinna gain, presence region, lower treble, and upper treble—to identify detailed characteristics. Additionally, pay attention to peaks and dips within each range to understand their impact on perceived audio qualities like warmth, clarity, and brightness.
   objectType: frequency_responses
   source:
     dataConnectorName: pg_connector
@@ -144,4 +145,3 @@ definition:
       target:
         modelField:
           - fieldName: iem_id
-

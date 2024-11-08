@@ -8,6 +8,12 @@ definition:
       type: int4!
     - name: iem_name
       type: varchar!
+      description: |
+        Name of the in-ear monitor in {brand}_{name} format. Preference target name ends with "_target".
+        Available preference targets:
+          jm1_target: JM1 Target (aka the new meta)
+          harman_target: Harman Target
+          crinacle_target: Preference Target by reviewer Crinacle or in-ear fidelity 2023 target.
   graphql:
     typeName: iems
     inputTypeName: iems_input

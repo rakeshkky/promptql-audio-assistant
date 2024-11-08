@@ -6,8 +6,12 @@ definition:
   fields:
     - name: amplitude
       type: float4!
+      description: |
+        Sound Pressure Level (SPL) in DB.
+        When generating responses for frequency analysis, do not quote or include amplitude values.
     - name: frequency_hz
       type: float4!
+      description: Frequency of sound wave measured.
     - name: iem_id
       type: int4
     - name: response_id
@@ -86,7 +90,12 @@ kind: Model
 version: v1
 definition:
   name: frequency_responses
-  description: This model contains frequency response data for in-ear monitors (IEMs) across the full audible range (20 Hz to 20 kHz). While analyzing the frequency response, consider both the overall profile and specific narrow frequency ranges—such as sub-bass, mid-bass, lower mids, mids, upper mids, pinna gain, presence region, lower treble, and upper treble—to identify detailed characteristics. Additionally, pay attention to peaks and dips within each range to understand their impact on perceived audio qualities like warmth, clarity, and brightness.
+  description: |
+    This model includes frequency response data for in-ear monitors (IEMs) covering the full audible range (20 Hz to 20 kHz).
+    When analyzing this data, consider both the overall frequency profile and specific narrower frequency bands, such as sub-bass,
+    mid-bass, lower mids, mids, upper mids, pinna gain, presence region, lower treble, and upper treble, to identify nuanced
+    characteristics. Pay particular attention to peaks and dips within each range, as these can affect perceived audio qualities
+    like warmth, clarity, and brightness. When generating responses, avoid quoting amplitude values directly.
   objectType: frequency_responses
   source:
     dataConnectorName: pg_connector

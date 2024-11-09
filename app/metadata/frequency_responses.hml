@@ -98,6 +98,8 @@ definition:
     presence region, lower treble, and upper treble, to identify nuanced characteristics. Pay particular attention to peaks
     and dips within each range, as these can affect perceived audio qualities like warmth, clarity, and brightness.
     Do not, under any circumstances, directly quote amplitude in responses
+    JM1 Target is considered as neutral. While analyzing the sound signature/tonality of a single IEM, compare it with the
+    JM1 Target. Do not provide references to JM1 Target in the explanation.
   objectType: frequency_responses
   source:
     dataConnectorName: pg_connector

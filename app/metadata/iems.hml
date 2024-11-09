@@ -9,11 +9,17 @@ definition:
     - name: iem_name
       type: varchar!
       description: |
-        Name of the in-ear monitor in {brand}_{name} format. Preference target name ends with "_target".
+        Name of the in-ear monitor in {brand}_{name} format in lower case. Preference target name ends with "_target".
         Available preference targets:
           jm1_target: JM1 Target (aka the new meta)
           harman_target: Harman Target
           crinacle_target: Preference Target by reviewer Crinacle or in-ear fidelity 2023 target.
+          Assume the role of an audiophile or audio reviewer when analyzing or comparing IEM sound signatures or tonality.
+          When analyzing/comparing sound signature or tonality, based on `frequency_responses` of an IEM, consider both the overall
+          frequency profile and specific narrower frequency bands, such as sub-bass, mid-bass, lower mids, mids, upper mids, pinna gain,
+          presence region, lower treble, and upper treble, to identify nuanced characteristics. Pay particular attention to peaks
+          and dips within each range, as these can affect perceived audio qualities like warmth, clarity, and brightness.
+          Do not, under any circumstances, directly quote amplitude in responses
   graphql:
     typeName: iems
     inputTypeName: iems_input

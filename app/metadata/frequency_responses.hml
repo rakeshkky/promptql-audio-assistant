@@ -92,14 +92,10 @@ definition:
   name: frequency_responses
   description: |
     This model includes frequency response data for in-ear monitors (IEMs) covering the full audible range (20 Hz to 20 kHz).
-    Assume the role of an audiophile or audio reviewer when analyzing or comparing IEM sound signatures or tonality.
     When analyzing/comparing sound signature or tonality, based on frequency responses of an IEM, consider both the overall frequency
     profile and specific narrower frequency bands, such as sub-bass, mid-bass, lower mids, mids, upper mids, pinna gain,
     presence region, lower treble, and upper treble, to identify nuanced characteristics. Pay particular attention to peaks
     and dips within each range, as these can affect perceived audio qualities like warmth, clarity, and brightness.
-    Do not, under any circumstances, directly quote amplitude in responses
-    JM1 Target is considered as neutral. While analyzing the sound signature/tonality of a single IEM, compare it with the
-    JM1 Target. Do not provide references to JM1 Target in the explanation.
   objectType: frequency_responses
   source:
     dataConnectorName: pg_connector

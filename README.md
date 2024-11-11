@@ -9,6 +9,14 @@ This Hasura DDN supergraph enables you to query in-ear monitors (IEMs) and their
 - **Harman**
 - **Crinacle** (IEF 2023)
 
+You can also find IEM recommendations tailored to different genres and sound preferences.
+
+<p align="center">
+  <img src="./images/chat_1.png" alt="Ask For Recommendation" width="45%" height="200px" />
+  <img src="./images/chat_2.png" alt="IEM Recommendation" width="45%" height="200px" />
+</p>
+
+
 ## Getting started
 
 ### Load measurements on your Postgres database.

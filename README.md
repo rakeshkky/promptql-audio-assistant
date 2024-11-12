@@ -9,11 +9,43 @@ This Hasura DDN supergraph enables you to query in-ear monitors (IEMs) and their
 - **Harman**
 - **Crinacle** (IEF 2023)
 
-You can also find IEM recommendations tailored to different genres and sound preferences.
+## Use Cases
+
+### Sound signature of an IEM
+
+- The assistang would explain the sound signature and tonality of an IEM.
+
+<p align="center">
+  <img src="./images/hexa_soundsignature.png" width="45%" height="200px" />
+  <img src="./images/hexa_sound_signature_response.png" width="45%" height="200px" />
+</p>
+
+- Also provides comparisons with target (preference) curves
+
+<p align="center">
+  <img src="./images/hexa_target_response_comparison.png" width="45%" height="200px" />
+</p>
+
+- Compare IEMs
+
+<p align="center">
+  <img src="./images/hexa_comparison_nova.png" width="45%" height="200px" />
+  <img src="./images/hexa_comparison_nova_result.png" width="45%" height="200px" />
+</p>
+
+- Get Eq recommendation
+
+<p align="center">
+  <img src="./images/nova_eq.png" width="45%" height="200px" />
+  <img src="./images/nova_eq_result.png" width="45%" height="200px" />
+</p>
+
+### Get IEM recommendations
 
 <p align="center">
   <img src="./images/chat_1.png" alt="Ask For Recommendation" width="45%" height="200px" />
   <img src="./images/chat_2.png" alt="IEM Recommendation" width="45%" height="200px" />
+  <img src="./images/kiwi_ears_scorecard.png" alt="IEM Recommendation score card" width="45%" height="200px" />
 </p>
 
 

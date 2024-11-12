@@ -17,6 +17,12 @@ definition:
         Use fuzzy string matching when retrieving an IEM. For example, to fetch an IEM named "Truthear Hola,"
         apply a fuzzy match such as iem_name = 'truthear_hola' or iem_name LIKE '%truthear%hola%' or iem_name LIKE '%hola%'.
         (Note: this is an example format and not an exact method).
+        Analyze the frequency response by first normalizing the graph around 800 Hz. Provide an in-depth tonality assessment,
+        describing how variations in sub-bass, mid-bass, mids, upper mids, and treble affect audio characteristics like warmth,
+        clarity, or brightness, and note how these changes may impact musical elements such as vocals, basslines, or percussion.
+        Highlight any genre preferences or suitability based on this analysis. At the end, briefly compare how the tonality deviates
+        from both the Harman and JM1 (new meta) target curves, focusing on specific differences that may influence the overall listening experience.
+        Do not, at any circumstances, directly quote the amplitude values in the explanation.
   graphql:
     typeName: iems
     inputTypeName: iems_input

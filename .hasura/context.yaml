@@ -1,7 +1,7 @@
 kind: Context
 version: v3
 definition:
-  current: staging
+  current: default
   contexts:
     default:
       project: organic-liger-4989

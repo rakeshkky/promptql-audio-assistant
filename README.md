@@ -2,7 +2,7 @@
 
 Hasura DDN Project available at: https://console.hasura.io/project/organic-liger-4989
 
-This Hasura DDN supergraph enables you to query in-ear monitors (IEMs) and their frequency responses. The AI assistant helps you explore the sound signature of a specific IEM and compare it with other IEMs or target responses.
+This Hasura DDN supergraph enables you to query in-ear monitors (IEMs) and their frequency responses. The AI assistant enabled by [Hasura PromptQL](https://promptql.hasura.io/) helps you explore the sound signature of a specific IEM and compare it with other IEMs or target responses. Also get the IEM recommendations based on your sound preferences and genres.
 
 ### Available Target Responses
 - **JM1** (new meta)

@@ -1,0 +1,193 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: eartip_reviews
+  fields:
+    - name: bass
+      type: numeric!
+      description: "Rate the bass performance of the eartip on a numeric scale (0-5), where a higher number indicates better bass quality."
+    - name: bore_size
+      type: text!
+      description: "Specify the bore size of the eartip (e.g., regular, wide, small) to describe its fit and compatibility with earphones."
+    - name: feel
+      type: text!
+      description: "Describe the comfort level and tactile experience of the eartip in a single word or short phrase (e.g., soft, firm, grippy, sticky, pliable)."
+    - name: midrange
+      type: numeric!
+      description: "Rate the midrange sound performance of the eartip on a numeric scale (0-5), where a higher number indicates better midrange quality."
+    - name: product
+      type: text!
+      description: "Provide the name of the eartip product. When presenting this to the user, sanitize it to remove extraneous or irrelevant text."
+    - name: soundstage
+      type: numeric!
+      description: "Rate the soundstage quality of the eartip on a numeric scale (0-5), where a higher number reflects a more expansive soundstage."
+    - name: stem_length
+      type: text!
+      description: "Specify the length of the eartip stem in qualitative terms (e.g., short, regular, stubby) to describe its physical dimensions."
+    - name: treble
+      type: numeric!
+      description: "Rate the treble performance of the eartip on a numeric scale (0-5), where a higher number indicates better treble quality."
+    - name: vocal_presence
+      type: numeric!
+      description: "Rate the clarity and prominence of vocals when using the eartip on a numeric scale (0-5), where a higher number indicates better vocal presence."
+  graphql:
+    typeName: eartip_reviews
+    inputTypeName: eartip_reviews_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_connector
+      dataConnectorObjectType: eartip_reviews
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: eartip_reviews
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - bass
+          - bore_size
+          - feel
+          - midrange
+          - product
+          - soundstage
+          - stem_length
+          - treble
+          - vocal_presence
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: eartip_reviews_bool_exp
+  operand:
+    object:
+      type: eartip_reviews
+      comparableFields:
+        - fieldName: bass
+          booleanExpressionType: numeric_bool_exp
+        - fieldName: bore_size
+          booleanExpressionType: text_bool_exp
+        - fieldName: feel
+          booleanExpressionType: text_bool_exp
+        - fieldName: midrange
+          booleanExpressionType: numeric_bool_exp
+        - fieldName: product
+          booleanExpressionType: text_bool_exp
+        - fieldName: soundstage
+          booleanExpressionType: numeric_bool_exp
+        - fieldName: stem_length
+          booleanExpressionType: text_bool_exp
+        - fieldName: treble
+          booleanExpressionType: numeric_bool_exp
+        - fieldName: vocal_presence
+          booleanExpressionType: numeric_bool_exp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: eartip_reviews_bool_exp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: eartip_reviews_agg_exp
+  operand:
+    object:
+      aggregatedType: eartip_reviews
+      aggregatableFields:
+        - fieldName: bass
+          aggregateExpression: numeric_agg_exp
+        - fieldName: bore_size
+          aggregateExpression: text_agg_exp
+        - fieldName: feel
+          aggregateExpression: text_agg_exp
+        - fieldName: midrange
+          aggregateExpression: numeric_agg_exp
+        - fieldName: product
+          aggregateExpression: text_agg_exp
+        - fieldName: soundstage
+          aggregateExpression: numeric_agg_exp
+        - fieldName: stem_length
+          aggregateExpression: text_agg_exp
+        - fieldName: treble
+          aggregateExpression: numeric_agg_exp
+        - fieldName: vocal_presence
+          aggregateExpression: numeric_agg_exp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: eartip_reviews_agg_exp
+
+---
+kind: Model
+version: v1
+definition:
+  name: eartip_reviews
+  objectType: eartip_reviews
+  source:
+    dataConnectorName: pg_connector
+    collection: eartip_reviews
+  filterExpressionType: eartip_reviews_bool_exp
+  aggregateExpression: eartip_reviews_agg_exp
+  orderableFields:
+    - fieldName: bass
+      orderByDirections:
+        enableAll: true
+    - fieldName: bore_size
+      orderByDirections:
+        enableAll: true
+    - fieldName: feel
+      orderByDirections:
+        enableAll: true
+    - fieldName: midrange
+      orderByDirections:
+        enableAll: true
+    - fieldName: product
+      orderByDirections:
+        enableAll: true
+    - fieldName: soundstage
+      orderByDirections:
+        enableAll: true
+    - fieldName: stem_length
+      orderByDirections:
+        enableAll: true
+    - fieldName: treble
+      orderByDirections:
+        enableAll: true
+    - fieldName: vocal_presence
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: eartip_reviews
+      subscription:
+        rootField: eartip_reviews
+    selectUniques:
+      - queryRootField: eartip_reviews_by_product
+        uniqueIdentifier:
+          - product
+        subscription:
+          rootField: eartip_reviews_by_product
+    orderByExpressionType: eartip_reviews_order_by
+    filterInputTypeName: eartip_reviews_filter_input
+    aggregate:
+      queryRootField: eartip_reviews_aggregate
+      subscription:
+        rootField: eartip_reviews_aggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: eartip_reviews
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true

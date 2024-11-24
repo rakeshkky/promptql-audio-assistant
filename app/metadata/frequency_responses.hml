@@ -90,13 +90,20 @@ kind: Model
 version: v1
 definition:
   name: frequency_responses
-  description: |
-    This model includes frequency response data for in-ear monitors (IEMs) covering the full audible range (20 Hz to 20 kHz).
+  description: >
+    This model includes frequency response data for in-ear monitors (IEMs)
+    covering the full audible range (20 Hz to 20 kHz).
+
     Analyze the frequency response by first normalizing the graph around 800 Hz. Provide an in-depth tonality assessment,
+
     describing how variations in sub-bass, mid-bass, mids, upper mids, and treble affect audio characteristics like warmth,
+
     clarity, or brightness, and note how these changes may impact musical elements such as vocals, basslines, or percussion.
+
     Highlight any genre preferences or suitability based on this analysis. At the end, briefly compare how the tonality deviates
+
     from both the Harman and JM1 (new meta) target curves, focusing on specific differences that may influence the overall listening experience.
+
     Do not, at any circumstances, directly quote the amplitude values in the explanation.
   objectType: frequency_responses
   source:
@@ -120,14 +127,20 @@ definition:
   graphql:
     selectMany:
       queryRootField: frequency_responses
+      subscription:
+        rootField: frequency_responses
     selectUniques:
       - queryRootField: frequency_responses_by_response_id
         uniqueIdentifier:
           - response_id
+        subscription:
+          rootField: frequency_responses_by_response_id
     orderByExpressionType: frequency_responses_order_by
     filterInputTypeName: frequency_responses_filter_input
     aggregate:
       queryRootField: frequency_responses_aggregate
+      subscription:
+        rootField: frequency_responses_aggregate
 
 ---
 kind: ModelPermissions
@@ -138,6 +151,7 @@ definition:
     - role: admin
       select:
         filter: null
+        allowSubscriptions: true
 
 ---
 kind: Relationship
@@ -156,3 +170,4 @@ definition:
       target:
         modelField:
           - fieldName: iem_id
+

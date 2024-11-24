@@ -562,3 +562,91 @@ definition:
   graphql:
     selectTypeName: varchar_agg_exp
 
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: numeric_agg_exp
+  operand:
+    scalar:
+      aggregatedType: numeric
+      aggregationFunctions:
+        - name: avg
+          returnType: numeric
+        - name: max
+          returnType: numeric
+        - name: min
+          returnType: numeric
+        - name: stddev
+          returnType: numeric
+        - name: stddev_pop
+          returnType: numeric
+        - name: stddev_samp
+          returnType: numeric
+        - name: sum
+          returnType: numeric
+        - name: var_pop
+          returnType: numeric
+        - name: var_samp
+          returnType: numeric
+        - name: variance
+          returnType: numeric
+      dataConnectorAggregationFunctionMapping:
+        - dataConnectorName: pg_connector
+          dataConnectorScalarType: numeric
+          functionMapping:
+            avg:
+              name: avg
+            max:
+              name: max
+            min:
+              name: min
+            stddev:
+              name: stddev
+            stddev_pop:
+              name: stddev_pop
+            stddev_samp:
+              name: stddev_samp
+            sum:
+              name: sum
+            var_pop:
+              name: var_pop
+            var_samp:
+              name: var_samp
+            variance:
+              name: variance
+  count:
+    enable: true
+  countDistinct:
+    enable: true
+  graphql:
+    selectTypeName: numeric_agg_exp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: text_agg_exp
+  operand:
+    scalar:
+      aggregatedType: text
+      aggregationFunctions:
+        - name: max
+          returnType: text
+        - name: min
+          returnType: text
+      dataConnectorAggregationFunctionMapping:
+        - dataConnectorName: pg_connector
+          dataConnectorScalarType: text
+          functionMapping:
+            max:
+              name: max
+            min:
+              name: min
+  count:
+    enable: true
+  countDistinct:
+    enable: true
+  graphql:
+    selectTypeName: text_agg_exp
+

@@ -16,6 +16,91 @@
   },
   "metadata": {
     "tables": {
+      "eartip_reviews": {
+        "schemaName": "public",
+        "tableName": "eartip_reviews",
+        "columns": {
+          "bass": {
+            "name": "bass",
+            "type": {
+              "scalarType": "numeric"
+            },
+            "nullable": "nonNullable",
+            "description": null
+          },
+          "bore_size": {
+            "name": "bore_size",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nonNullable",
+            "description": null
+          },
+          "feel": {
+            "name": "feel",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nonNullable",
+            "description": null
+          },
+          "midrange": {
+            "name": "midrange",
+            "type": {
+              "scalarType": "numeric"
+            },
+            "nullable": "nonNullable",
+            "description": null
+          },
+          "product": {
+            "name": "product",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nonNullable",
+            "description": null
+          },
+          "soundstage": {
+            "name": "soundstage",
+            "type": {
+              "scalarType": "numeric"
+            },
+            "nullable": "nonNullable",
+            "description": null
+          },
+          "stem_length": {
+            "name": "stem_length",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nonNullable",
+            "description": null
+          },
+          "treble": {
+            "name": "treble",
+            "type": {
+              "scalarType": "numeric"
+            },
+            "nullable": "nonNullable",
+            "description": null
+          },
+          "vocal_presence": {
+            "name": "vocal_presence",
+            "type": {
+              "scalarType": "numeric"
+            },
+            "nullable": "nonNullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {
+          "eartip_reviews_pkey": [
+            "product"
+          ]
+        },
+        "foreignRelations": {},
+        "description": null
+      },
       "frequency_responses": {
         "schemaName": "public",
         "tableName": "frequency_responses",

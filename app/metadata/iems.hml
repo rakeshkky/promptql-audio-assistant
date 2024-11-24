@@ -87,7 +87,8 @@ kind: Model
 version: v1
 definition:
   name: iems
-  description: In Ear Monitors data, may include preference targets labeled with a "_target" suffix.
+  description: In Ear Monitors data, may include preference targets labeled with a
+    "_target" suffix.
   objectType: iems
   source:
     dataConnectorName: pg_connector
@@ -104,17 +105,25 @@ definition:
   graphql:
     selectMany:
       queryRootField: iems
+      subscription:
+        rootField: iems
     selectUniques:
       - queryRootField: iems_by_iem_name
         uniqueIdentifier:
           - iem_name
+        subscription:
+          rootField: iems_by_iem_name
       - queryRootField: iems_by_iem_id
         uniqueIdentifier:
           - iem_id
+        subscription:
+          rootField: iems_by_iem_id
     orderByExpressionType: iems_order_by
     filterInputTypeName: iems_filter_input
     aggregate:
       queryRootField: iems_aggregate
+      subscription:
+        rootField: iems_aggregate
 
 ---
 kind: ModelPermissions
@@ -125,6 +134,7 @@ definition:
     - role: admin
       select:
         filter: null
+        allowSubscriptions: true
 
 ---
 kind: Relationship
@@ -147,3 +157,4 @@ definition:
           - fieldName: iem_id
   graphql:
     aggregateFieldName: frequency_responses_aggregate
+

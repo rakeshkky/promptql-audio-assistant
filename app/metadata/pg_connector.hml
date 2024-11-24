@@ -714,6 +714,21 @@ definition:
                 type: named
                 name: varchar
       object_types:
+        delete_eartip_reviews_by_product_response:
+          description: Responses from the 'delete_eartip_reviews_by_product' procedure
+          fields:
+            affected_rows:
+              description: The number of rows affected by the mutation
+              type:
+                type: named
+                name: int4
+            returning:
+              description: Data from rows affected by the mutation
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: eartip_reviews
         delete_frequency_responses_by_response_id_response:
           description: Responses from the 'delete_frequency_responses_by_response_id' procedure
           fields:
@@ -759,6 +774,44 @@ definition:
                 element_type:
                   type: named
                   name: iems
+        eartip_reviews:
+          fields:
+            bass:
+              type:
+                type: named
+                name: numeric
+            bore_size:
+              type:
+                type: named
+                name: text
+            feel:
+              type:
+                type: named
+                name: text
+            midrange:
+              type:
+                type: named
+                name: numeric
+            product:
+              type:
+                type: named
+                name: text
+            soundstage:
+              type:
+                type: named
+                name: numeric
+            stem_length:
+              type:
+                type: named
+                name: text
+            treble:
+              type:
+                type: named
+                name: numeric
+            vocal_presence:
+              type:
+                type: named
+                name: numeric
         frequency_responses:
           fields:
             amplitude:
@@ -789,6 +842,59 @@ definition:
               type:
                 type: named
                 name: varchar
+        insert_eartip_reviews_object:
+          fields:
+            bass:
+              type:
+                type: named
+                name: numeric
+            bore_size:
+              type:
+                type: named
+                name: text
+            feel:
+              type:
+                type: named
+                name: text
+            midrange:
+              type:
+                type: named
+                name: numeric
+            product:
+              type:
+                type: named
+                name: text
+            soundstage:
+              type:
+                type: named
+                name: numeric
+            stem_length:
+              type:
+                type: named
+                name: text
+            treble:
+              type:
+                type: named
+                name: numeric
+            vocal_presence:
+              type:
+                type: named
+                name: numeric
+        insert_eartip_reviews_response:
+          description: Responses from the 'insert_eartip_reviews' procedure
+          fields:
+            affected_rows:
+              description: The number of rows affected by the mutation
+              type:
+                type: named
+                name: int4
+            returning:
+              description: Data from rows affected by the mutation
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: eartip_reviews
         insert_frequency_responses_object:
           fields:
             amplitude:
@@ -853,6 +959,78 @@ definition:
                 element_type:
                   type: named
                   name: iems
+        update_column_eartip_reviews_bass:
+          description: Update the 'bass' column in the 'eartip_reviews' collection
+          fields:
+            _set:
+              description: Set the column to this value
+              type:
+                type: named
+                name: numeric
+        update_column_eartip_reviews_bore_size:
+          description: Update the 'bore_size' column in the 'eartip_reviews' collection
+          fields:
+            _set:
+              description: Set the column to this value
+              type:
+                type: named
+                name: text
+        update_column_eartip_reviews_feel:
+          description: Update the 'feel' column in the 'eartip_reviews' collection
+          fields:
+            _set:
+              description: Set the column to this value
+              type:
+                type: named
+                name: text
+        update_column_eartip_reviews_midrange:
+          description: Update the 'midrange' column in the 'eartip_reviews' collection
+          fields:
+            _set:
+              description: Set the column to this value
+              type:
+                type: named
+                name: numeric
+        update_column_eartip_reviews_product:
+          description: Update the 'product' column in the 'eartip_reviews' collection
+          fields:
+            _set:
+              description: Set the column to this value
+              type:
+                type: named
+                name: text
+        update_column_eartip_reviews_soundstage:
+          description: Update the 'soundstage' column in the 'eartip_reviews' collection
+          fields:
+            _set:
+              description: Set the column to this value
+              type:
+                type: named
+                name: numeric
+        update_column_eartip_reviews_stem_length:
+          description: Update the 'stem_length' column in the 'eartip_reviews' collection
+          fields:
+            _set:
+              description: Set the column to this value
+              type:
+                type: named
+                name: text
+        update_column_eartip_reviews_treble:
+          description: Update the 'treble' column in the 'eartip_reviews' collection
+          fields:
+            _set:
+              description: Set the column to this value
+              type:
+                type: named
+                name: numeric
+        update_column_eartip_reviews_vocal_presence:
+          description: Update the 'vocal_presence' column in the 'eartip_reviews' collection
+          fields:
+            _set:
+              description: Set the column to this value
+              type:
+                type: named
+                name: numeric
         update_column_frequency_responses_amplitude:
           description: Update the 'amplitude' column in the 'frequency_responses' collection
           fields:
@@ -903,6 +1081,87 @@ definition:
               type:
                 type: named
                 name: varchar
+        update_eartip_reviews_by_product_response:
+          description: Responses from the 'update_eartip_reviews_by_product' procedure
+          fields:
+            affected_rows:
+              description: The number of rows affected by the mutation
+              type:
+                type: named
+                name: int4
+            returning:
+              description: Data from rows affected by the mutation
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: eartip_reviews
+        update_eartip_reviews_by_product_update_columns:
+          description: Update the columns of the 'eartip_reviews' collection
+          fields:
+            bass:
+              description: Update the 'bass' column in the 'eartip_reviews' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: update_column_eartip_reviews_bass
+            bore_size:
+              description: Update the 'bore_size' column in the 'eartip_reviews' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: update_column_eartip_reviews_bore_size
+            feel:
+              description: Update the 'feel' column in the 'eartip_reviews' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: update_column_eartip_reviews_feel
+            midrange:
+              description: Update the 'midrange' column in the 'eartip_reviews' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: update_column_eartip_reviews_midrange
+            product:
+              description: Update the 'product' column in the 'eartip_reviews' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: update_column_eartip_reviews_product
+            soundstage:
+              description: Update the 'soundstage' column in the 'eartip_reviews' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: update_column_eartip_reviews_soundstage
+            stem_length:
+              description: Update the 'stem_length' column in the 'eartip_reviews' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: update_column_eartip_reviews_stem_length
+            treble:
+              description: Update the 'treble' column in the 'eartip_reviews' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: update_column_eartip_reviews_treble
+            vocal_presence:
+              description: Update the 'vocal_presence' column in the 'eartip_reviews' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: update_column_eartip_reviews_vocal_presence
         update_frequency_responses_by_response_id_response:
           description: Responses from the 'update_frequency_responses_by_response_id' procedure
           fields:
@@ -1014,6 +1273,14 @@ definition:
                   type: named
                   name: update_column_iems_iem_name
       collections:
+        - name: eartip_reviews
+          arguments: {}
+          type: eartip_reviews
+          uniqueness_constraints:
+            eartip_reviews_pkey:
+              unique_columns:
+                - product
+          foreign_keys: {}
         - name: frequency_responses
           arguments: {}
           type: frequency_responses
@@ -1039,6 +1306,23 @@ definition:
           foreign_keys: {}
       functions: []
       procedures:
+        - name: delete_eartip_reviews_by_product
+          description: Delete any row on the 'eartip_reviews' collection using the 'product' key
+          arguments:
+            key_product:
+              type:
+                type: named
+                name: text
+            pre_check:
+              description: Delete permission predicate over the 'eartip_reviews' collection
+              type:
+                type: nullable
+                underlying_type:
+                  type: predicate
+                  object_type_name: eartip_reviews
+          result_type:
+            type: named
+            name: delete_eartip_reviews_by_product_response
         - name: delete_frequency_responses_by_response_id
           description: Delete any row on the 'frequency_responses' collection using the 'response_id' key
           arguments:
@@ -1090,6 +1374,25 @@ definition:
           result_type:
             type: named
             name: delete_iems_by_iem_name_response
+        - name: insert_eartip_reviews
+          description: Insert into the eartip_reviews table
+          arguments:
+            objects:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: insert_eartip_reviews_object
+            post_check:
+              description: Insert permission predicate over the 'eartip_reviews' collection
+              type:
+                type: nullable
+                underlying_type:
+                  type: predicate
+                  object_type_name: eartip_reviews
+          result_type:
+            type: named
+            name: insert_eartip_reviews_response
         - name: insert_frequency_responses
           description: Insert into the frequency_responses table
           arguments:
@@ -1128,6 +1431,34 @@ definition:
           result_type:
             type: named
             name: insert_iems_response
+        - name: update_eartip_reviews_by_product
+          description: Update any row on the 'eartip_reviews' collection using the 'product' key
+          arguments:
+            key_product:
+              type:
+                type: named
+                name: text
+            post_check:
+              description: Update permission post-condition predicate over the 'eartip_reviews' collection
+              type:
+                type: nullable
+                underlying_type:
+                  type: predicate
+                  object_type_name: eartip_reviews
+            pre_check:
+              description: Update permission pre-condition predicate over the 'eartip_reviews' collection
+              type:
+                type: nullable
+                underlying_type:
+                  type: predicate
+                  object_type_name: eartip_reviews
+            update_columns:
+              type:
+                type: named
+                name: update_eartip_reviews_by_product_update_columns
+          result_type:
+            type: named
+            name: update_eartip_reviews_by_product_response
         - name: update_frequency_responses_by_response_id
           description: Update any row on the 'frequency_responses' collection using the 'response_id' key
           arguments:

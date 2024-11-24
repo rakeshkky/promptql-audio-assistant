@@ -82,6 +82,34 @@ pip install -r requirements.txt
 PG_URL= <your-postrgres-url-string> python load_db.py
 ```
 
+### Load eartip reviews on your Postgres database.
+
+Create the required tables:
+```sql
+CREATE TABLE eartip_reviews (
+    product TEXT PRIMARY KEY,
+    bore_size TEXT NOT NULL,
+    stem_length TEXT NOT NULL,
+    feel TEXT NOT NULL,
+    bass NUMERIC NOT NULL,
+    midrange NUMERIC NOT NULL,
+    treble NUMERIC NOT NULL,
+    soundstage NUMERIC NOT NULL,
+    vocal_presence NUMERIC NOT NULL
+);
+-- Indexes for optimizing queries
+CREATE INDEX idx_product ON eartip_reviews (product);
+CREATE INDEX idx_numeric_ratings ON eartip_reviews (bass, midrange, treble, soundstage, vocal_presence);
+```
+
+Load the eartip reviews data in your database.
+```bash
+cd eartips
+pip3 install -r requirements.txt
+
+PG_URL= <your-postrgres-url-string> python load_db.py eartip_reviews.txt
+```
+
 ### Set up Hasura DDN project
 
 - [Create a Hasura account](https://promptql.hasura.io/docs/getting-started#create-a-hasura-account) if you don't have on already.
